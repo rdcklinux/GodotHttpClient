@@ -1,6 +1,8 @@
 # GodotNetworking
 El inicio para distintos modulos para el protocolo HTTP y la suit de aplicaciones entorno a el.
 
+Inicialmente se implementan los metodos GET y POST de HTTP puedes usarlo sobre SSL (HTTPS), la respuesta es captudara en un
+callback en tu codigo (function).
 
 ## Ejemplo de uso
 
