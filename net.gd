@@ -3,8 +3,7 @@ extends Node
 var http = null
 
 func _ready():
-	var GodotWebClient = load("GodotWebClient.gd").GodotWebClient
-	http = GodotWebClient.new('127.0.0.1', 5000, self)
+	http = Networking.WebClient.new('127.0.0.1', 5000, self)
 	http.get('/get', 'get_response', {"param":"query"})
 	http.post('/save', 'post_response', {"param":"data"})
 
