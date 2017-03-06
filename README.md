@@ -1,17 +1,20 @@
 # GodotNetworking
-El inicio para distintos modulos para el protocolo HTTP y la suit de aplicaciones entorno a el.
+El inicio para distintos modulos para el protocolo HTTP y la suit de aplicaciones entorno a él.
 
-Inicialmente se implementan los metodos GET y POST de HTTP puedes usarlo sobre SSL (HTTPS), la respuesta es captudara en un
-callback en tu codigo (function).
+Inicialmente se implementan los metodos GET y POST de HTTP puedes usarlo sobre SSL (HTTPS), la respuesta es capturada en un
+callback de tu código (función).
 
 ## Ejemplo de uso
 
-Debes dejar el archivo **GodotNetworking.gd** en alguna parte de tu aplicacion Godot
-Luego debes usarlo desde cualquir script gd.
+Debes dejar el archivo **GodotNetworking.gd** en alguna parte de tu aplicación Godot,
+luego cargalo como un singleton desde la confguración de tu proyecto y llamale **Networking**.
+Haora puedes usarlo desde cualquier script gd usando:
 
-Puedes ver un ejemplo de el script **net.gd**
+**var http = Networking.WebClient.new(...)**.
 
-Al final de cada callback es importante usar:
+Puedes ver un ejemplo del script en: **net.gd**
+
+Al final de cada callback (tu función) es importante usar:
 ```
 http.terminate()
 ```
