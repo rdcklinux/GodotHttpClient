@@ -19,9 +19,12 @@ class WebClient:
 
 	func __perform_request(method, callback, path, data=''):
 		var http = HTTPRequest.new()
+		var str_port = ''
 		self.__queue.append({'http': http, 'cb': callback})
 		self.object.add_child(http)
-		var uri = 'http' + ('s' if use_ssl else '') + '://' + host + ':' + str(port)
+		if self.port != 80:
+			str_port = ':' + str(self.port)
+		var uri = 'http' + ('s' if self.use_ssl else '') + '://' + self.host + str_port
 		http.connect("request_completed", self.object, callback)
 		http.request(uri + path, self.__headers, true, method, data)
 
@@ -46,3 +49,24 @@ class WebClient:
 		self.__headers.append_array(['Content-Type: application/x-www-form-urlencoded'])
 		data = self.__client.query_string_from_dict(data)
 		self.__perform_request(HTTPClient.METHOD_POST, callback, path, data)
+
+class OAuth2:
+	
+	class Client:
+		var host = ''
+		var port = ''
+		var basepath = ''
+		var http = null
+	
+		func _init(server, port, object, use_ssl=false):
+			self.http = WebClient.new(server, port, use_ssl, object)
+			
+
+	class ClientCredentials:
+		var client_id = ''
+		var secret_id = ''
+		
+		func _init(client_id, secret_id):
+			self.client_id = client_id
+			self.secret_id = secret_id
+			
