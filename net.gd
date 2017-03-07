@@ -23,7 +23,7 @@ func get_response(result, response_code, headers, body):
 	print(response_code)
 	print(headers)
 	print(body.get_string_from_utf8())
-	http.terminate()
+	http.finish_request()
 	
 func post_response(result, response_code, headers, body):
 	print("POST")
@@ -31,7 +31,7 @@ func post_response(result, response_code, headers, body):
 	print(response_code)
 	print(headers)
 	print(body.get_string_from_utf8())
-	http.terminate()
+	http.finish_request()
 	
 func get_oauth2_access_token(result, response_code, headers, body):
 	var data = {}

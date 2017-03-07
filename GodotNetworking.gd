@@ -28,7 +28,7 @@ class WebClient:
 		http.connect("request_completed", self.object, callback)
 		http.request(uri + path, self.__headers, true, method, data)
 
-	func terminate():
+	func finish_request():
 		if not self.__queue.empty():
 			var http = self.__queue[0]['http']
 			var callback = self.__queue[0]['cb']
