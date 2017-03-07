@@ -2,15 +2,15 @@ extends Node
 
 class WebClient:
 	var host = '127.0.0.1'
-	var port = 5000
+	var port = 80
 	var use_ssl = false
-	var __headers = StringArray()
+	var __headers = StringArray([])
 	var __queue = Array()
 	var __client = null
 	var object = null
 	
 
-	func _init(host, port, object, use_ssl=false):
+	func _init(host, object, port=80, use_ssl=false):
 		self.host = host
 		self.port = port
 		self.use_ssl = use_ssl
@@ -51,22 +51,62 @@ class WebClient:
 		self.__perform_request(HTTPClient.METHOD_POST, callback, path, data)
 
 class OAuth2:
-	
+
 	class Client:
-		var host = ''
-		var port = ''
-		var basepath = ''
+		var host = '127.0.0.1'
+		var port = 80
 		var http = null
+		var use_ssl=false
+		var flow = null
+		var access_token = ''
 	
-		func _init(server, port, object, use_ssl=false):
-			self.http = WebClient.new(server, port, use_ssl, object)
+		func _init(host, flow, object, port=80, use_ssl=false):
+			self.host = host
+			self.port = port
+			self.use_ssl = use_ssl
+			self.http = WebClient.new(host, object, port, use_ssl)
+			self.flow = flow
 			
+		func request_access_token():
+			self.flow.request_access_token(self.http)
+
+		func set_access_token(token):
+		  self.access_token = token
+
+		func request(path, callback, headers=StringArray([]), data={}, method='GET'):
+			headers.append_array(['Authorization: Bearer ' + self.access_token])
+			self.http.set_headers(headers)
+			if method == 'POST':
+				self.http.post(path, callback, data)
+			elif method == 'GET':
+				self.http.get(path, callback, data)
+
+		func finish_request():
+			self.http.terminate()
+
 
 	class ClientCredentials:
 		var client_id = ''
-		var secret_id = ''
-		
-		func _init(client_id, secret_id):
+		var client_secret = ''
+		var method = 'POST'
+		var access_token_path = ''
+		var callback = null
+
+		func _init(client_id, client_secret, access_token_path, callback, method='POST'):
+			self.method = method
 			self.client_id = client_id
-			self.secret_id = secret_id
-			
+			self.client_secret = client_secret
+			self.access_token_path = access_token_path
+			self.callback = callback
+		
+		func request_access_token(http):
+			var data = {
+			  'client_id' : self.client_id,
+			  'client_secret' : self.client_secret,
+			  'grant_type': 'client_credentials'
+			}
+			if self.method == 'POST':
+				http.post(self.access_token_path, self.callback, data)
+			elif self.method == 'GET':
+				http.get(self.access_token_path, self.callback, data)
+
