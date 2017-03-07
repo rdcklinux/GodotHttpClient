@@ -39,7 +39,7 @@ func get_oauth2_access_token(result, response_code, headers, body):
 	oauth2_client.set_access_token(data['access_token'])
 	oauth2_client.finish_request()
 	var my_headers = StringArray(['X-Custom-Header: my_value_header'])
-	oauth2_client.request('/1.0/list/download/report_197.csv', 'get_data', my_headers)
+	oauth2_client.request('/data.json', 'get_data', my_headers)
 
 
 func get_data(result, response_code, headers, body):
