@@ -36,7 +36,7 @@ http.finish_request()
 ```
 ó
 ```
-oauth2_client..finish_request()
+oauth2_client.finish_request()
 ```
 
 Esto es para optimizar rendimiento y no mantener en memoria recursos innecesarios.
