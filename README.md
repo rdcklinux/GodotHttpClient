@@ -12,8 +12,9 @@ Ahora puedes usarlo desde cualquier script gd
 
 ### Para Request Común
 
-**var http = Networking.WebClient.new(...)**.
-
+```
+  var http = Networking.WebClient.new(...)
+```
 
 ### Para OAuth2 Request
 
@@ -32,4 +33,9 @@ Al final de cada callback (tu función) es importante usar:
 ```
 http.finish_request()
 ```
+ó
+```
+oauth2_client..finish_request()
+```
+
 Esto es para optimizar rendimiento y no mantener en memoria recursos innecesarios.
