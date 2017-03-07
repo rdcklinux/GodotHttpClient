@@ -1,8 +1,9 @@
 # GodotNetworking
-El inicio para distintos modulos para el protocolo HTTP y la suite de aplicaciones entorno a él.
+La solucion para distintas implementaciones sobre el protocolo HTTP y la suite de aplicaciones entorno a él.
 
 Inicialmente se implementan los metodos GET y POST de HTTP puedes usarlo sobre SSL (HTTPS), la respuesta es capturada en un
 callback de tu código (función).
+También se implementa el flujo OAuth2 ClientCredentials. Se irán agregando otros flujos para OAuth2.
 
 ## Ejemplo de uso
 
