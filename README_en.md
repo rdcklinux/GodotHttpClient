@@ -20,7 +20,6 @@ Now you can use from some script gd.
 ### For OAuth2 Request
 
 Also implements OAuth2 ClientCredentials flow, this give communication with a api that using OAuth2 and your Godot app.
-esto permite comunicar tu aplicación con una api que usa como capa de seguridad OAuth2
 
 ```
   var oauth2_flow = Networking.OAuth2.ClientCredentials.new(...)
