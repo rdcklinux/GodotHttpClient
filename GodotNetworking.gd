@@ -53,17 +53,11 @@ class WebClient:
 class OAuth2:
 
 	class Client:
-		var host = '127.0.0.1'
-		var port = 80
 		var http = null
-		var use_ssl=false
 		var flow = null
 		var access_token = ''
 	
 		func _init(host, flow, object, port=80, use_ssl=false):
-			self.host = host
-			self.port = port
-			self.use_ssl = use_ssl
 			self.http = WebClient.new(host, object, port, use_ssl)
 			self.flow = flow
 			
