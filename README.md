@@ -1,4 +1,4 @@
-# GodotNetworking
+# GodotNetworking [README English version](README_en.md)
 La solucion para distintas implementaciones sobre el protocolo HTTP y la suite de aplicaciones entorno a él.
 
 Inicialmente se implementan los metodos GET y POST de HTTP puedes usarlo sobre SSL (HTTPS), la respuesta es capturada en un
